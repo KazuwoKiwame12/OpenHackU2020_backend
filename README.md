@@ -1,135 +1,52 @@
 # OpenHackU2020_backend
-## APIの設計
-### 感情が地図に載る(感情の共有)
-**各県の色16進数を返す**  
-- APIのURL: `/emotion/prefectures`  
-- Method: Get  
-- フロントエンドから受け取るデータ  
+## 本番環境
+heroku: yet
+frontend: yet
+## 初期設定
+- 1: .evnを.env.exampleより作成
+```bash
+$ cp .env.example .env
 ```
-None
+- 2: go.modにあるライブラリを自動インストール
+```bash
+$ go build
 ```
-- フロントエンドへと渡すデータ
-```
-[
-  {
-    prefecture: string,
-    color: string
-  },
-  ....
-]
-```
+- 3: .envの項目を埋めDBとの接続
+  
+## 開発
+### ファイル構成
+- DB: Database関連の処理
+  - Model: 各テーブルのCRUD機能
+- Controller: API_URLと紐付ける機能
+  - EmotionListOfPrefectures.go
+  - CommentListInPrefecture.go
+  - CommentDetail.go
+  - UserEdit.go
+  - RegisterData.go
+  - DeleteData.go
+- Service: Controllerで用いる主要機能の提供
+### Git・Githubについて
+- Issue活用
+  - Issueは様々な問題や疑問、課題を共有するための機能　
+  - ラベル付けや、担当者へのassignなども行なう　
+  - **終了**したissueは閉じること
+- プロジェクト活用
+  - 自身の進めるタスクなどのスケジュールや予定などを、まとめ共有するための機能
+  - 一週間ごとにプロジェクトをまとめると進捗管理がしやすい
+  - Issueとの関連付けが可能である→ [参考文献](https://help.github.com/ja/github/managing-your-work-on-github/adding-issues-and-pull-requests-to-a-project-board)
+- Wiki活用
+  - 自分が良いと思ったことや、開発の多末になるであろう知識を共有する機能
+  - 参考記事があれば、リンクを貼っておきましょう
+- **ブランチ**について
+  - **masterに直接Pushは禁止**です（できないようにします）
+  - **新たな作業(issue)を行う時は毎回masterをfetch, pullすること**
+  - ブランチは作業ごとに切り替えること(最新のmasterの状態で作業を始めるため)
+  - マージされたブランチ(リモート、ローカル)は削除すること
+  - commitのメッセージは内容がわかるように
+  - PullRequestには**Close #番号**とコメントに含めること
+  - 作業が未完成の状態のPullRequestにはコメントに**WIP**と文字を入力すること
 
-**コメントの一覧表示 or（感情の場所を指すピン）を各県ごとに分けて渡す(選択された県のみ渡す方が良い)**
-- APIのURL: `/emotion/{prefecture}/comments`
-- Method: Get  
-- フロントエンドから受け取るデータ
-```
-prefecture: string  
-```
-- フロントエンドへと渡すデータ
-```
-[
-    {
-      id: int,
-      emotion: int,
-      latitude: double,
-      longtitude: double,
-      user_name: string,
-      dateTime: dateTime,
-    },
-    .....
-]
-```
-**ピンを押して、コメント内容確認(紐ついた返信も)**
-- APIのURL: `/emotion/{prefecture}/comments/{id}` 
-- Method: Get   
-- フロントエンドから受け取るデータ  
-```
-id: int
-```
-- フロントエンドへと渡すデータ
-```
-[
-    {
-        comment: string,
-        user: {id: int, name: string},
-        emotion: int,
-        dateTime: dateTime,
-        responses: [
-            {
-              id: int,
-              user: {id: int, name: string},
-              comment: string
-            },
-            ......
-        ]
-    ]
-]
-```
-### ユーザ情報登録
-**ユーザ情報登録(名前が重複しないようにする)**  
-- APIのURL: `/user/resister`
-- Method: Post
-- フロントエンドから受け取るデータ    
-```
-name: string  
-```
-- フロントエンドへと渡すデータ
-```
-[
-  {
-    id: int,
-    name: string
-  },
-]
-```
-**ユーザ情報編集** 
-- APIのURL: /user/edit
-- Method: Update
-- フロントエンドから受け取るデータ  
-```
-newName: string
-```
-- フロントエンドへと渡すデータ
-```
-[
-  {
-    id: int,
-    name: string
-  },
-]
-```
-
-## DBの設計  
-### User
-- id: int、bigIncrement、primary key
-- name: string、unique(認証に使う)
-- point: int __(追加機能)
-
-### Emotion
-- id: int、bigIncrement、primary key
-- emotion: int(frontendで番号に対応した数字を)
-- point: int __(追加機能)
-
-### Comment
-- id: int、bigIncrement、primary key
-- user_id: foreign key
-- emotion_id: foreign key
-- prefecture: string
-- latitude: double(緯度)
-- longtitude: double(経度)
-- comment: text
-- dateTime: dateTime
-
-### Response
-- id: int、bigIncrement、primary key
-- user_id: foreign key
-- comment_id: foreign key
-- comment: text
-- dateTime: dateTime
-
-### 関係性
-- User Comment: 一対多
-- User Response: 一対多
-- Comment Response: 一対多
-- Comment Emotion: 一対一
+### 注意点
+1. export(外部で使用する)する関数は関数名の最初の文字を大文字にしなければならない  
+2. go.modのmoduleの名前 = "project-name"がモジュールのパスとして扱われる。 結果、binの下に作成されるのは"project-name"であるため、開発時は自分の名前に変えること。**必ずその変更はcommitしないこと**
+3. 自分でPullRequestをmergeしてはいけない
