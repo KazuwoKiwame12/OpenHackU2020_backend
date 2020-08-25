@@ -1,4 +1,4 @@
-module github.com/KazuwoKiwame12/OpenHackU2020_backend
+module github.com/KazuwoKiwame12/open-hack-u-2020-backend
 
 go 1.14
 
