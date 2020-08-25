@@ -2,6 +2,10 @@
 ## 本番環境
 heroku: yet
 frontend: yet
+## 他のREADME.md
+- [APIの設計](https://github.com/KazuwoKiwame12/OpenHackU2020_backend/tree/master/Controller#api%E3%81%AE%E8%A8%AD%E8%A8%88)
+- [DBの設計](https://github.com/KazuwoKiwame12/OpenHackU2020_backend/tree/master/DB#db%E3%81%AE%E8%A8%AD%E8%A8%88)
+- [Serviceフォルダについて](https://github.com/KazuwoKiwame12/OpenHackU2020_backend/tree/master/Service#api%E3%81%AE%E4%B8%BB%E8%A6%81%E6%A9%9F%E8%83%BD%E3%81%AE%E5%AE%9F%E8%A3%85)
 ## 初期設定
 - 1: .evnを.env.exampleより作成
 ```bash
