@@ -1,4 +1,4 @@
-# OpenHackU2020_backend
+# open-hack-u-2020-backend
 ## 本番環境
 heroku: yet
 frontend: yet
