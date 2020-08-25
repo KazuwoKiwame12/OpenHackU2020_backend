@@ -10,17 +10,17 @@ import (
 
 //Connect ...DBとの接続
 func Connect() *gorm.DB {
-	/*ローカルではこちらを用いる
-	username := os.Getenv("DB_USER")
-	password := os.Getenv("DB_PASSWORD")
-	dbName := os.Getenv("DB_NAME")
-	dbHost := os.Getenv("DB_HOST")
-
-	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", dbHost, username, dbName, password)
-	fmt.Println(dbURI)
-
-	connstr := dbURI
+	/*
+		.envが取得できない
+		ssl := "?sslmode=disable"
+		err := godotenv.Load("../.env")
+		if err != nil {
+			ssl = ""
+			log.Print("Error loading .env file")
+		}
 	*/
+
+	//connstr := "自分のDATABASE_URL"
 	connstr := os.Getenv("DATABASE_URL")
 	db, err := gorm.Open("postgres", connstr)
 	if err != nil {
