@@ -1,7 +1,7 @@
 # open-hack-u-2020-backend
 ## 本番環境
 heroku: https://open-hack-u-2020-backend.herokuapp.com/  
-frontend: yet
+frontend: yet...
 ## 他のREADME.md
 - [APIの設計](https://github.com/KazuwoKiwame12/OpenHackU2020_backend/tree/master/Controller#api%E3%81%AE%E8%A8%AD%E8%A8%88)
 - [DBの設計](https://github.com/KazuwoKiwame12/OpenHackU2020_backend/tree/master/DB#db%E3%81%AE%E8%A8%AD%E8%A8%88)
