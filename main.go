@@ -5,7 +5,8 @@ import (
 	"net/http"
 	"os"
 
-	usercontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller"
+	commentlistcontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/CommentListController"
+	usercontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/UserController"
 	db "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB"
 	"github.com/labstack/echo/v4"
 )
@@ -15,6 +16,7 @@ func main() {
 
 	e := echo.New()
 	e.GET("/", helloWorld)
+	e.GET("/emotion/:prefecture/comments", commentlistcontroller.CommentsInPrefecture)
 	e.POST("/user/register", usercontroller.Register)
 	e.POST("/user/edit", usercontroller.Edit)
 	e.Logger.Fatal(e.Start(":" + port))

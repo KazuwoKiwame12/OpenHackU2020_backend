@@ -50,3 +50,13 @@ func Delete(id int) *Comment {
 
 	return &comment
 }
+
+//GetListByPrefecture ...指定した県のコメント一覧
+func GetListByPrefecture(prefecture string) []Comment {
+	db := db.Connect()
+	defer db.Close()
+
+	comments := []Comment{}
+	db.Where("prefecture = ?", prefecture).Find(&comments)
+	return comments
+}
