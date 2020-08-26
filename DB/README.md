@@ -17,14 +17,14 @@
 - latitude: double(緯度)
 - longtitude: double(経度)
 - comment: text
-- dateTime: dateTime
+- date_time: timestamp
 
 ### Response
 - id: int、bigIncrement、primary key
 - user_id: foreign key
 - comment_id: foreign key
 - comment: text
-- dateTime: dateTime
+- dateTime: timestamp
 
 ### 関係性
 - User Comment: 一対多
