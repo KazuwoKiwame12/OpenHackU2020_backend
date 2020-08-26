@@ -87,6 +87,7 @@ name: string
 - Method: Update
 - フロントエンドから受け取るデータ  
 ```
+id: int
 newName: string
 ```
 - フロントエンドへと渡すデータ
