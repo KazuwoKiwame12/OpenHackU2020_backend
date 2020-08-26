@@ -2,6 +2,11 @@
 ## 本番環境
 heroku: https://open-hack-u-2020-backend.herokuapp.com/  
 frontend: yet...
+## 資料
+Gorm: http://gorm.io/ja_JP/docs/  
+echo:https://echo.labstack.com/guide  
+schedule: https://docs.google.com/document/d/1ciZnMsEzIa827yUnZu9w0Gn9ODGrfo-bImdd5iO8lE0/edit  
+project management: https://github.com/KazuwoKiwame12/open-hack-u-2020-backend/projects/1
 ## 他のREADME.md
 - [APIの設計](https://github.com/KazuwoKiwame12/OpenHackU2020_backend/tree/master/Controller#api%E3%81%AE%E8%A8%AD%E8%A8%88)
 - [DBの設計](https://github.com/KazuwoKiwame12/OpenHackU2020_backend/tree/master/DB#db%E3%81%AE%E8%A8%AD%E8%A8%88)
