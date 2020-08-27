@@ -3,6 +3,7 @@ package registerdata
 import (
 	"net/http"
 	"strconv"
+	"time"
 
 	comment "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB/Model/Comment"
 	"github.com/labstack/echo/v4"
@@ -20,7 +21,7 @@ func CommnetRegister(c echo.Context) error {
 	latitude := c.FormValue("latitude")
 	longtitude := c.FormValue("longtitude")
 	prefecture := c.FormValue("prefecture")
-	//datatime := c.FormValue("dateTime")
+	datatime := c.FormValue("dateTime")
 
 	//str->float64->float32
 	var lati float64
@@ -31,6 +32,11 @@ func CommnetRegister(c echo.Context) error {
 	long, _ = strconv.ParseFloat(longtitude, 32)
 	var b float32 = float32(long)
 
+	//time型の処理
+	str := datatime
+	layout := "Mon, 2 Jan 2006 15:04:05 -0700"
+	t, _ := time.Parse(layout, str)
+
 	//構造体に入れる
 	com.ID, _ = strconv.Atoi(id)
 	com.EmotionID, _ = strconv.Atoi(emotion)
@@ -38,7 +44,7 @@ func CommnetRegister(c echo.Context) error {
 	com.Latitude = a
 	com.Longtitude = b
 	com.Prefecture = prefecture
-	//com.Datetime = c.FormValue("dateTime")
+	com.DateTime = t
 	comment.Create(com)
 
 	return c.JSON(http.StatusOK, "GOOD")
