@@ -2,7 +2,7 @@
 ### 感情が地図に載る(感情の共有)
 **各県の色16進数を返す**  
 - APIのURL: `/emotion/prefectures`  
-- Method: Get  
+- Method: GET
 - フロントエンドから受け取るデータ  
 ```
 None
@@ -11,8 +11,8 @@ None
 ```
 [
   {
-    prefecture: string,
-    color: string
+    Prefecture: string,
+    Color: string
   },
   ....
 ]

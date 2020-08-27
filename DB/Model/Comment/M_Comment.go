@@ -4,6 +4,7 @@ import (
 	"time"
 
 	db "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB"
+	dateservice "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Service/DateService"
 )
 
 //Comment ...table: Commentsのモデル
@@ -56,7 +57,11 @@ func GetListByPrefecture(prefecture string) []Comment {
 	db := db.Connect()
 	defer db.Close()
 
+	now := time.Now()
+	from := dateservice.StartOfDay(now)
+	to := dateservice.StartOfNextDay(now)
+
 	comments := []Comment{}
-	db.Where("prefecture = ?", prefecture).Find(&comments)
+	db.Where("prefecture = ? AND date_time >= ? AND date_time < ?", prefecture, from, to).Find(&comments)
 	return comments
 }
