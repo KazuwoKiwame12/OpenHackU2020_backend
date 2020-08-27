@@ -1,13 +1,12 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"os"
 
 	commentlistcontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/CommentListController"
+	responselistcontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/ResponseListController"
 	usercontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/UserController"
-	db "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB"
 	"github.com/labstack/echo/v4"
 )
 
@@ -17,17 +16,14 @@ func main() {
 	e := echo.New()
 	e.GET("/", helloWorld)
 	e.GET("/emotion/:prefecture/comments", commentlistcontroller.CommentsInPrefecture)
+	e.GET("/emotion/:prefecture/comments/:comment_id", responselistcontroller.ResponseListInComment)
 	e.POST("/user/register", usercontroller.Register)
-	e.POST("/user/edit", usercontroller.Edit)
 	//e.POST("/comment/register", registerdata.CommentRegister)
 	//e.POST("/comment/response", registerdata.ResponseRegister)
+	e.PATCH("/user/edit", usercontroller.Edit)
 	e.Logger.Fatal(e.Start(":" + port))
 }
 
 func helloWorld(c echo.Context) error {
-	db := db.Connect()
-	defer db.Close()
-	log.Print(db)
-
 	return c.JSON(http.StatusOK, "Hello World!!")
 }
