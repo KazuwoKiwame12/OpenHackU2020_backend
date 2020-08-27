@@ -51,7 +51,7 @@ id: int
 [
     {
         comment: string,
-        user: {id: int, name: string},
+        user_name: string,
         emotion: int,
         dateTime: dateTime,
         responses: [
