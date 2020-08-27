@@ -47,3 +47,13 @@ func Delete(id int) *Response {
 
 	return &response
 }
+
+//GetListByComment ...コメントに紐付いたRresponseモデルの取得
+func GetListByComment(commentID int) []Response {
+	db := db.Connect()
+	defer db.Close()
+
+	responseList := []Response{}
+	db.Where("comment_id = ?", commentID).Find(&responseList)
+	return responseList
+}
