@@ -85,7 +85,7 @@ name: string
 ```
 **ユーザ情報編集** 
 - APIのURL: `/user/edit`
-- Method: Update
+- Method: PATCH
 - フロントエンドから受け取るデータ  
 ```
 id: int
