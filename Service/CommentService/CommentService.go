@@ -1,7 +1,6 @@
 package commentservice
 
 import (
-	"log"
 	"time"
 
 	comment "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB/Model/Comment"
@@ -18,12 +17,19 @@ type CommentForClient struct {
 	DateTime   time.Time
 }
 
+//CommentContent ...コメントの内容
+type CommentContent struct {
+	Comment  string
+	Emotion  int
+	UserName string
+	DateTime time.Time
+}
+
 //ConvertCtoCFC ...[]commentを[]CommentForClientに変換する
 func ConvertCtoCFC(commentList []comment.Comment) []CommentForClient {
 	commentListForClient := []CommentForClient{}
 
-	for index, comment := range commentList {
-		log.Println(index)
+	for _, comment := range commentList {
 		user := user.Get(comment.UserID)
 		commentForClient := CommentForClient{}
 
@@ -38,4 +44,18 @@ func ConvertCtoCFC(commentList []comment.Comment) []CommentForClient {
 	}
 
 	return commentListForClient
+}
+
+//MakeCommentContent ...CommentをCommentContentに整形する
+func MakeCommentContent(id int) CommentContent {
+	comment := comment.Get(id)
+	user := user.Get(comment.UserID)
+
+	commentContent := CommentContent{}
+	commentContent.Comment = comment.Comment
+	commentContent.Emotion = comment.EmotionID
+	commentContent.UserName = user.Name
+	commentContent.DateTime = comment.DateTime
+
+	return commentContent
 }

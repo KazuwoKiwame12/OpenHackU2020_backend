@@ -29,41 +29,42 @@ prefecture: string
 ```
 [
     {
-      id: int,
-      emotion: int,
-      latitude: double,
-      longtitude: double,
-      user_name: string,
-      dateTime: dateTime,
+      ID: int,
+      Emotion: int,
+      Latitude: double,
+      Longtitude: double,
+      UserName: string,
+      DateTime: dateTime,
     },
     .....
 ]
 ```
 **ピンを押して、コメント内容確認(紐ついた返信も)**
-- APIのURL: `/emotion/{prefecture}/comments/{id}` 
+- APIのURL: `/emotion/{prefecture}/comments/{comment_id}` 
 - Method: Get   
 - フロントエンドから受け取るデータ  
 ```
-id: int
+comment_id: int
 ```
 - フロントエンドへと渡すデータ
 ```
-[
-    {
-        comment: string,
-        user: {id: int, name: string},
-        emotion: int,
-        dateTime: dateTime,
-        responses: [
-            {
-              id: int,
-              user: {id: int, name: string},
-              comment: string
-            },
-            ......
-        ]
-    ]
-]
+{
+  CommentContent: {
+    Comment: string,
+    Emotion: int,
+    UserName: string
+    DateTime: dateTime,
+  }
+  Response: [
+      {
+        ID: int,
+        UserName: string,
+        Comment: string,
+        DateTime: dateTime,
+      },
+      ......
+  ]
+}
 ```
 ### ユーザ情報登録
 **ユーザ情報登録(名前が重複しないようにする)**  
@@ -75,12 +76,12 @@ name: string
 ```
 - フロントエンドへと渡すデータ
 ```
-[
-  {
-    id: int,
-    name: string
-  },
-]
+{
+  ID: int,
+  Name: string,
+  Point: int
+},
+
 ```
 **ユーザ情報編集** 
 - APIのURL: `/user/edit`
@@ -92,12 +93,11 @@ newName: string
 ```
 - フロントエンドへと渡すデータ
 ```
-[
-  {
-    id: int,
-    name: string
-  },
-]
+{
+  ID: int,
+  Name: string,
+  Point: int
+}
 ```
 
 ### 感情の登録など
