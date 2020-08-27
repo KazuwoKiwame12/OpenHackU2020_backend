@@ -19,6 +19,8 @@ func main() {
 	e.GET("/emotion/:prefecture/comments", commentlistcontroller.CommentsInPrefecture)
 	e.POST("/user/register", usercontroller.Register)
 	e.POST("/user/edit", usercontroller.Edit)
+	e.POST("/comment/register", registerData.CommentRegister)
+	e.POST(e.POST("/comment/response", registerData.ResponseRegister)
 	e.Logger.Fatal(e.Start(":" + port))
 }
 
