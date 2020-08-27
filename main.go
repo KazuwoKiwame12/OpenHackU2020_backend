@@ -18,6 +18,8 @@ func main() {
 	e.GET("/emotion/:prefecture/comments", commentlistcontroller.CommentsInPrefecture)
 	e.GET("/emotion/:prefecture/comments/:comment_id", responselistcontroller.ResponseListInComment)
 	e.POST("/user/register", usercontroller.Register)
+	//e.POST("/comment/register", registerdata.CommentRegister)
+	//e.POST("/comment/response", registerdata.ResponseRegister)
 	e.PATCH("/user/edit", usercontroller.Edit)
 	e.Logger.Fatal(e.Start(":" + port))
 }
