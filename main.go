@@ -5,6 +5,7 @@ import (
 	"os"
 
 	commentlistcontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/CommentListController"
+	prefecturecontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/PrefectureController"
 	responselistcontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/ResponseListController"
 	usercontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/UserController"
 	"github.com/labstack/echo/v4"
@@ -15,6 +16,7 @@ func main() {
 
 	e := echo.New()
 	e.GET("/", helloWorld)
+	e.GET("/emotion/prefectures", prefecturecontroller.PrefectureInfoList)
 	e.GET("/emotion/:prefecture/comments", commentlistcontroller.CommentsInPrefecture)
 	e.GET("/emotion/:prefecture/comments/:comment_id", responselistcontroller.ResponseListInComment)
 	e.POST("/user/register", usercontroller.Register)
