@@ -2,7 +2,6 @@ package emotionservice
 
 import (
 	"image/color"
-	"log"
 	"strconv"
 )
 
@@ -15,23 +14,16 @@ type Emotion struct {
 
 //AlfaBlend ...α値を用いた色合成の計算
 func AlfaBlend(emotionIDList []int) string {
-	//mixColor := color.NRGBA{R: 255, G: 255, B: 255, A: 160}
-	mixColor := color.NRGBA{R: 0, G: 0, B: 0, A: 160}
+	mixColor := color.NRGBA{R: 255, G: 255, B: 255, A: 160}
 	emotionList := getEmotionList()
 
 	for _, emotionID := range emotionIDList {
 		alfaRate := float32(emotionList[emotionID].Color.A / 255)
-		log.Printf("alfaRate: %f\n", alfaRate)
 
 		newR := float32(emotionList[emotionID].Color.R)*alfaRate + float32(mixColor.R)*(1-alfaRate)
 		newG := float32(emotionList[emotionID].Color.G)*alfaRate + float32(mixColor.G)*(1-alfaRate)
 		newB := float32(emotionList[emotionID].Color.B)*alfaRate + float32(mixColor.B)*(1-alfaRate)
-
-		log.Println(newR)
-		log.Println(newG)
-		log.Println(newB)
 		mixColor = color.NRGBA{R: uint8(newR), G: uint8(newG), B: uint8(newB), A: 160}
-		log.Println(mixColor)
 	}
 
 	return convertToHexaDecimalNumColor(mixColor)
@@ -46,12 +38,7 @@ func AVGColor(emotionIDList []int) string {
 		newR := (emotionList[emotionID].Color.R + mixColor.R) / 2
 		newG := (emotionList[emotionID].Color.G + mixColor.G) / 2
 		newB := (emotionList[emotionID].Color.B + mixColor.B) / 2
-
-		log.Println(newR)
-		log.Println(newG)
-		log.Println(newB)
 		mixColor = color.NRGBA{R: uint8(newR), G: uint8(newG), B: uint8(newB), A: 160}
-		log.Println(mixColor)
 	}
 
 	return convertToHexaDecimalNumColor(mixColor)
