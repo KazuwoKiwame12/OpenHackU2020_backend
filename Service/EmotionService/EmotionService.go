@@ -14,7 +14,7 @@ type Emotion struct {
 
 //AlfaBlend ...α値を用いた色合成の計算
 func AlfaBlend(emotionIDList []int) string {
-	mixColor := color.NRGBA{R: 255, G: 255, B: 255, A: 160}
+	mixColor := color.NRGBA{R: 0, G: 0, B: 0, A: 160}
 	emotionList := getEmotionList()
 
 	for _, emotionID := range emotionIDList {

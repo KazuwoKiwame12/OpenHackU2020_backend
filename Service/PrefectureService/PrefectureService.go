@@ -18,7 +18,7 @@ func GetPrefectureInfoList() []PrefectureInfo {
 	for _, prefecture := range getAllPrefectures() {
 		commentList := comment.GetListByPrefecture(prefecture)
 		emotionIDList := commentservice.GetCommentEmotionIDList(commentList)
-		prefectureColor := emotionservice.AlfaBlend(emotionIDList)
+		prefectureColor := emotionservice.AVGColor(emotionIDList)
 
 		prefectureInfo := PrefectureInfo{Prefecture: prefecture, Color: prefectureColor}
 		prefectureInfoList = append(prefectureInfoList, prefectureInfo)
@@ -27,7 +27,7 @@ func GetPrefectureInfoList() []PrefectureInfo {
 	return prefectureInfoList
 }
 
-//GetAllPrefectures ...全ての県名を取得
+//getAllPrefectures ...全ての県名を取得
 func getAllPrefectures() [47]string {
 	prefectureList := [47]string{
 		"HOKKAIDO",
