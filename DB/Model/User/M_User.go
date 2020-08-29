@@ -1,6 +1,8 @@
 package user
 
-import db "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB"
+import (
+	db "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB"
+)
 
 //User ...table: Usersのモデル
 type User struct {
@@ -27,7 +29,10 @@ func Update(id int, newName string) *User {
 
 	user := User{}
 	user.ID = id
-	db.Model(&user).Update("name", newName)
+	result := db.Model(&user).Update("name", newName)
+	if result.Error != nil {
+		user = User{}
+	}
 
 	return &user
 }

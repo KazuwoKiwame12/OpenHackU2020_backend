@@ -19,7 +19,8 @@ type CommentAndResponses struct {
 //ResponseListInComment ...コメントに紐付いた返信データを整形して返す
 func ResponseListInComment(c echo.Context) error {
 	commentID, _ := strconv.Atoi(c.Param("comment_id"))
-	commentContent := commentservice.MakeCommentContent(commentID)
+	prefecture := c.Param("prefecture")
+	commentContent := commentservice.MakeCommentContent(prefecture, commentID)
 
 	responseList := response.GetListByComment(commentID)
 	responseListForClient := responseservice.ConvertRtoRFC(responseList)

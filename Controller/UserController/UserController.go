@@ -8,7 +8,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-/*Errorが返ってくるようになっていない*/
 //Register ...ユーザ情報登録
 func Register(c echo.Context) error {
 	name := c.FormValue("name")
