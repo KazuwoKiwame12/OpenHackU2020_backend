@@ -11,7 +11,7 @@ import (
 )
 
 //Register---初期コメント及び情報登録
-func CommnetRegister(c echo.Context) error {
+func CommentRegister(c echo.Context) error {
 
 	var com comment.Comment
 
