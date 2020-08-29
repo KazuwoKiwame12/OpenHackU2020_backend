@@ -60,8 +60,8 @@ func MakeCommentContent(id int) CommentContent {
 	return commentContent
 }
 
-//GetCommentEmotionList ...受け取った[]CommentのEmotionのみを返す
-func GetCommentEmotionList(commentList []comment.Comment) []int {
+//GetCommentEmotionIDList ...受け取った[]CommentのEmotionのみを返す
+func GetCommentEmotionIDList(commentList []comment.Comment) []int {
 	emotionList := make([]int, 0)
 	for _, comment := range commentList {
 		emotionList = append(emotionList, comment.EmotionID)

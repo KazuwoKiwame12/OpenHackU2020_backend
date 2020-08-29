@@ -10,8 +10,5 @@ CREATE table comments (
     PRIMARY KEY (id), 
     foreign key (user_id) references users(id)
         on delete cascade
-        on update no action,
-    foreign key (emotion_id) references emotions(id)
-        on delete no action
         on update no action
 );
