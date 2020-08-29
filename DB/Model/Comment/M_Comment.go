@@ -20,13 +20,15 @@ type Comment struct {
 }
 
 //Create ...Commentsモデルの保存
-func Create(comment Comment) *Comment {
+func Create(comment Comment) bool {
 	db := db.Connect()
 	defer db.Close()
 
-	db.Create(&comment)
-
-	return &comment
+	result := db.Create(&comment)
+	if result.Error != nil {
+		return false
+	}
+	return true
 }
 
 //Get ...Commentsモデルの取得

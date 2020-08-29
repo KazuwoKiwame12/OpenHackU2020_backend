@@ -8,7 +8,8 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func CommentsInPrefecture(c echo.Context) error {
+//CommentListInPrefecture ...県に存在するコメント一覧取得
+func CommentListInPrefecture(c echo.Context) error {
 	commentList := comment.GetListByPrefecture(c.Param("prefecture"))
 	commentListForClient := commentservice.ConvertCtoCFC(commentList)
 

@@ -1,4 +1,4 @@
-package registerdata
+package registerdatacontroller
 
 import (
 	"net/http"
@@ -10,14 +10,14 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-//Register---初期コメント及び情報登録
-func CommnetRegister(c echo.Context) error {
+//RegisterComment ...コメント登録
+func RegisterComment(c echo.Context) error {
 
 	var com comment.Comment
 
 	//フロントからの各データ取得
-	user_id := c.FormValue("user_id")
-	emotion := c.FormValue("emotion")
+	userID := c.FormValue("user_id")
+	emotionID := c.FormValue("emotion_id")
 	comm := c.FormValue("comment")
 	latitude := c.FormValue("latitude")
 	longtitude := c.FormValue("longtitude")
@@ -39,8 +39,8 @@ func CommnetRegister(c echo.Context) error {
 	t, _ := time.Parse(layout, str)
 
 	//構造体に入れる
-	com.ID, _ = strconv.Atoi(user_id)
-	com.EmotionID, _ = strconv.Atoi(emotion)
+	com.UserID, _ = strconv.Atoi(userID)
+	com.EmotionID, _ = strconv.Atoi(emotionID)
 	com.Comment = comm
 	com.Latitude = a
 	com.Longtitude = b
@@ -48,19 +48,20 @@ func CommnetRegister(c echo.Context) error {
 	com.DateTime = t
 
 	//DB処理
-	comment.Create(com)
-
-	return c.JSON(http.StatusOK, "true")
+	hasSuccess := comment.Create(com)
+	returnValue := map[string]bool{"hasSuccess": hasSuccess}
+	return c.JSON(http.StatusOK, returnValue)
 }
 
-func ResponseRegister(c echo.Context) error {
+//RegisterResponse ...コメントに対する返信登録
+func RegisterResponse(c echo.Context) error {
 
 	//構造体宣言
 	var res response.Response
 
 	//フロントからのデータ取得
-	user_id := c.FormValue("user_id")
-	comment_id := c.FormValue("comment_id")
+	userID := c.FormValue("user_id")
+	commentID := c.FormValue("comment_id")
 	comm := c.FormValue("comment")
 	datetime := c.FormValue("dateTime")
 
@@ -70,14 +71,13 @@ func ResponseRegister(c echo.Context) error {
 	t, _ := time.Parse(layout, str)
 
 	//構造体に入れる
-	res.UserID, _ = strconv.Atoi(user_id)
-	res.CommentID, _ = strconv.Atoi(comment_id)
+	res.UserID, _ = strconv.Atoi(userID)
+	res.CommentID, _ = strconv.Atoi(commentID)
 	res.Comment = comm
 	res.DateTime = t
 
 	//DB処理
-	response.Create(res)
-
-	return c.JSON(http.StatusOK, "true")
-
+	hasSuccess := response.Create(res)
+	returnValue := map[string]bool{"hasSuccess": hasSuccess}
+	return c.JSON(http.StatusOK, returnValue)
 }

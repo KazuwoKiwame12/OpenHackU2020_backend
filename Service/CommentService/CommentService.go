@@ -10,7 +10,7 @@ import (
 //CommentForClient ...クライアントに渡すデータ構造
 type CommentForClient struct {
 	ID         int
-	Emotion    int
+	EmotionID  int
 	Latitude   float32
 	Longtitude float32
 	UserName   string
@@ -19,10 +19,10 @@ type CommentForClient struct {
 
 //CommentContent ...コメントの内容
 type CommentContent struct {
-	Comment  string
-	Emotion  int
-	UserName string
-	DateTime time.Time
+	Comment   string
+	EmotionID int
+	UserName  string
+	DateTime  time.Time
 }
 
 //ConvertCtoCFC ...[]commentを[]CommentForClientに変換する
@@ -34,7 +34,7 @@ func ConvertCtoCFC(commentList []comment.Comment) []CommentForClient {
 		commentForClient := CommentForClient{}
 
 		commentForClient.ID = comment.ID
-		commentForClient.Emotion = comment.EmotionID
+		commentForClient.EmotionID = comment.EmotionID
 		commentForClient.Latitude = comment.Latitude
 		commentForClient.Longtitude = comment.Longtitude
 		commentForClient.UserName = user.Name
@@ -53,7 +53,7 @@ func MakeCommentContent(prefecture string, id int) CommentContent {
 
 	commentContent := CommentContent{}
 	commentContent.Comment = comment.Comment
-	commentContent.Emotion = comment.EmotionID
+	commentContent.EmotionID = comment.EmotionID
 	commentContent.UserName = user.Name
 	commentContent.DateTime = comment.DateTime
 

@@ -16,13 +16,15 @@ type Response struct {
 }
 
 //Create ...Responsesモデルの保存
-func Create(response Response) *Response {
+func Create(response Response) bool {
 	db := db.Connect()
 	defer db.Close()
 
-	db.Create(&response)
-
-	return &response
+	result := db.Create(&response)
+	if result.Error != nil {
+		return false
+	}
+	return true
 }
 
 //Get ...Responsesモデルの取得

@@ -31,7 +31,7 @@ prefecture: string
 [
     {
       ID: int,
-      Emotion: int,
+      EmotionID: int,
       Latitude: double,
       Longtitude: double,
       UserName: string,
@@ -56,7 +56,7 @@ comment_id: int
 {
   CommentContent: {
     Comment: string,
-    Emotion: int,
+    EmotionID: int,
     UserName: string
     DateTime: dateTime,
   }
@@ -75,7 +75,7 @@ comment_id: int
 {
     "CommentContent": {
         "Comment": "",
-        "Emotion": 0,
+        "EmotionID": 0,
         "UserName": "",
         "DateTime": "0001-01-01T00:00:00Z"
     },
@@ -140,7 +140,7 @@ newName: string
 [    
   {      
     user_id: int,
-    emotion: int,   
+    emotion_id: int,   
     comment: string,   
     latitude: double,      
     longtitude: double,      
