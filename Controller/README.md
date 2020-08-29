@@ -20,13 +20,14 @@ None
 
 **コメントの一覧表示 or（感情の場所を指すピン）を各県ごとに分けて渡す(選択された県のみ渡す方が良い)**
 - APIのURL: `/emotion/{prefecture}/comments`
-- Method: Get  
+- Method: GET
 - フロントエンドから受け取るデータ
 ```
 prefecture: string  
 ```
 - フロントエンドへと渡すデータ
 ```
+//成功
 [
     {
       ID: int,
@@ -38,16 +39,20 @@ prefecture: string
     },
     .....
 ]
+
+//失敗...prefectureの部分が英語大文字の県名になっていない
+[]
 ```
 **ピンを押して、コメント内容確認(紐ついた返信も)**
 - APIのURL: `/emotion/{prefecture}/comments/{comment_id}` 
-- Method: Get   
+- Method: GET   
 - フロントエンドから受け取るデータ  
 ```
 comment_id: int
 ```
 - フロントエンドへと渡すデータ
 ```
+//成功
 {
   CommentContent: {
     Comment: string,
@@ -65,23 +70,41 @@ comment_id: int
       ......
   ]
 }
+
+//失敗...存在しないID or 県名を指定したとき
+{
+    "CommentContent": {
+        "Comment": "",
+        "Emotion": 0,
+        "UserName": "",
+        "DateTime": "0001-01-01T00:00:00Z"
+    },
+    "Response": []
+}
 ```
 ### ユーザ情報登録
 **ユーザ情報登録(名前が重複しないようにする)**  
 - APIのURL: `/user/resister`
-- Method: Post
+- Method: POST
 - フロントエンドから受け取るデータ    
 ```
 name: string  
 ```
 - フロントエンドへと渡すデータ
 ```
+//成功
 {
   ID: int,
   Name: string,
   Point: int
-},
+}
 
+//失敗...名前が重複したとき
+{
+    "ID": 0, ***これでフロントはエラー判定ができる****
+    "Name": string,
+    "Point": 0
+}
 ```
 **ユーザ情報編集** 
 - APIのURL: `/user/edit`
@@ -93,10 +116,18 @@ newName: string
 ```
 - フロントエンドへと渡すデータ
 ```
+//成功
 {
   ID: int,
   Name: string,
   Point: int
+}
+
+//失敗...名前が重複したとき
+{
+    "ID": 0, ***これでフロントはエラー判定ができる****
+    "Name": "",
+    "Point": 0
 }
 ```
 
@@ -120,7 +151,9 @@ newName: string
 ```
 - フロントエンドへと渡すデータ
 ```
-result: boolean
+{
+  hasSuccess: boolean
+}
 ```
 
 **コメントに対する返信の保存**
@@ -139,7 +172,9 @@ result: boolean
 ```
 - フロントエンドへと渡すデータ
 ```
-result: boolean
+{
+  hasSuccess: boolean
+}
 ```
 **コメント削除**
 - APIのURL: `/comment/delete`
@@ -154,7 +189,9 @@ result: boolean
 ```
 - フロントエンドへと渡すデータ
 ```
-result: boolean
+{
+  hasSuccess: boolean
+}
 ```
 **返信削除**
 - APIのURL: `/comment/response/delete`
@@ -169,5 +206,7 @@ result: boolean
 ```
 - フロントエンドへと渡すデータ
 ```
-result: boolean
+{
+  hasSuccess: boolean
+}
 ```
