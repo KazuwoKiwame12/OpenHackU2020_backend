@@ -48,6 +48,7 @@ prefecture: string
 - Method: GET   
 - フロントエンドから受け取るデータ  
 ```
+prefecture: string  
 comment_id: int
 ```
 - フロントエンドへと渡すデータ
