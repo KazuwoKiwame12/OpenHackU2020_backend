@@ -11,12 +11,15 @@ import (
 	responselistcontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/ResponseListController"
 	usercontroller "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Controller/UserController"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
 	port := os.Getenv("PORT")
 
 	e := echo.New()
+	e.Use(middleware.CORS())
+
 	e.GET("/", helloWorld)
 
 	//感情関連のデータ取得API
