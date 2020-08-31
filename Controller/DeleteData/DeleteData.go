@@ -11,7 +11,6 @@ import (
 
 func CommentDelete(c echo.Context) error {
 
-	//フロントからのデータ取得
 	comment_id := c.FormValue("comment_id")
 	comdel, _ := strconv.Atoi(comment_id)
 
@@ -24,7 +23,6 @@ func CommentDelete(c echo.Context) error {
 
 func ResponseDelete(c echo.Context) error {
 
-	//フロントからのデータ取得
 	response_id := c.FormValue("response_id")
 	resdel, _ := strconv.Atoi(response_id)
 
