@@ -1,4 +1,4 @@
-package registerdatacontroller
+package commentcontroller
 
 import (
 	"net/http"
@@ -6,12 +6,11 @@ import (
 	"time"
 
 	comment "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB/Model/Comment"
-	response "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB/Model/Response"
 	"github.com/labstack/echo/v4"
 )
 
-//RegisterComment ...コメント登録
-func RegisterComment(c echo.Context) error {
+//Register ...コメント登録
+func Register(c echo.Context) error {
 
 	var com comment.Comment
 
@@ -53,31 +52,15 @@ func RegisterComment(c echo.Context) error {
 	return c.JSON(http.StatusOK, returnValue)
 }
 
-//RegisterResponse ...コメントに対する返信登録
-func RegisterResponse(c echo.Context) error {
+//Delete ...コメントの削除
+func Delete(c echo.Context) error {
 
-	//構造体宣言
-	var res response.Response
-
-	//フロントからのデータ取得
-	userID := c.FormValue("user_id")
 	commentID := c.FormValue("comment_id")
-	comm := c.FormValue("comment")
-	datetime := c.FormValue("dateTime")
-
-	//time型の処理
-	str := datetime
-	layout := "2006-01-02 15:04:05"
-	t, _ := time.Parse(layout, str)
-
-	//構造体に入れる
-	res.UserID, _ = strconv.Atoi(userID)
-	res.CommentID, _ = strconv.Atoi(commentID)
-	res.Comment = comm
-	res.DateTime = t
+	comdel, _ := strconv.Atoi(commentID)
 
 	//DB処理
-	hasSuccess := response.Create(res)
+	hasSuccess := comment.Delete(comdel)
 	returnValue := map[string]bool{"hasSuccess": hasSuccess}
+
 	return c.JSON(http.StatusOK, returnValue)
 }

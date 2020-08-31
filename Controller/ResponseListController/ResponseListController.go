@@ -22,6 +22,12 @@ func ResponseListInComment(c echo.Context) error {
 	prefecture := c.Param("prefecture")
 	commentContent := commentservice.MakeCommentContent(prefecture, commentID)
 
+	if commentContent.UserName == "" {
+		nullValue := []responseservice.ResponseForClient{}
+		failed := CommentAndResponses{CommentContent: commentContent, Response: nullValue}
+		return c.JSON(http.StatusOK, failed)
+	}
+
 	responseList := response.GetListByComment(commentID)
 	responseListForClient := responseservice.ConvertRtoRFC(responseList)
 

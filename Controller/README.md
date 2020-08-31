@@ -157,7 +157,7 @@ newName: string
 ```
 
 **コメントに対する返信の保存**
-- APIのURL: `/comment/response`
+- APIのURL: `/comment/response/register`
 - Method: POST
 - フロントエンドから受け取るデータ
 ```

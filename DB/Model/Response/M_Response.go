@@ -39,15 +39,17 @@ func Get(id int) *Response {
 }
 
 //Delete ...Responsesモデルの削除
-func Delete(id int) *Response {
+func Delete(id int) bool {
 	db := db.Connect()
 	defer db.Close()
 
 	response := Response{}
 	response.ID = id
-	db.Delete(&response)
-
-	return &response
+	result := db.Delete(&response)
+	if result.Error != nil {
+		return false
+	}
+	return true
 }
 
 //GetListByComment ...コメントに紐付いたRresponseモデルの取得
