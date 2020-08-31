@@ -19,18 +19,12 @@ func Register(c echo.Context) error {
 	userID := c.FormValue("user_id")
 	commentID := c.FormValue("comment_id")
 	comm := c.FormValue("comment")
-	datetime := c.FormValue("dateTime")
-
-	//time型の処理
-	str := datetime
-	layout := "2006-01-02 15:04:05"
-	t, _ := time.Parse(layout, str)
 
 	//構造体に入れる
 	res.UserID, _ = strconv.Atoi(userID)
 	res.CommentID, _ = strconv.Atoi(commentID)
 	res.Comment = comm
-	res.DateTime = t
+	res.DateTime = time.Now()
 
 	//DB処理
 	hasSuccess := response.Create(res)
