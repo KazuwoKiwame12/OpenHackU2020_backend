@@ -182,11 +182,7 @@ newName: string
 - Method: DELETE
 - フロントエンドから受け取るデータ
 ```
-[    
-  {      
-    comment_id: int
-  }
-]
+comment_id: int
 ```
 - フロントエンドへと渡すデータ
 ```
@@ -199,11 +195,7 @@ newName: string
 - Method: DELETE
 - フロントエンドから受け取るデータ
 ```
-[    
-  {      
-    response_id: int
-  }
-]
+response_id: int
 ```
 - フロントエンドへと渡すデータ
 ```
