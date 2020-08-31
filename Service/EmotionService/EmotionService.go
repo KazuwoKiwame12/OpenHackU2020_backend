@@ -26,7 +26,7 @@ func AlfaBlend(emotionIDList []int) string {
 		mixColor = color.NRGBA{R: uint8(newR), G: uint8(newG), B: uint8(newB), A: 160}
 	}
 
-	return convertToHexaDecimalNumColor(mixColor)
+	return "#" + convertToHexaDecimalNumColor(mixColor)
 }
 
 //AVGColor ...RGBの値をそれぞれの平均を取る
@@ -41,7 +41,7 @@ func AVGColor(emotionIDList []int) string {
 		mixColor = color.NRGBA{R: uint8(newR), G: uint8(newG), B: uint8(newB), A: 160}
 	}
 
-	return convertToHexaDecimalNumColor(mixColor)
+	return "#" + convertToHexaDecimalNumColor(mixColor)
 }
 
 func getEmotionList() [12]Emotion {

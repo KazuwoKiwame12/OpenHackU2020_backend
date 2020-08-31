@@ -21,7 +21,6 @@ func Register(c echo.Context) error {
 	latitude := c.FormValue("latitude")
 	longtitude := c.FormValue("longtitude")
 	prefecture := c.FormValue("prefecture")
-	datetime := c.FormValue("dateTime")
 
 	//str->float64->float32
 	var lati float64
@@ -32,11 +31,6 @@ func Register(c echo.Context) error {
 	long, _ = strconv.ParseFloat(longtitude, 32)
 	var b float32 = float32(long)
 
-	//time型の処理
-	str := datetime
-	layout := "2006-01-02 15:04:05"
-	t, _ := time.Parse(layout, str)
-
 	//構造体に入れる
 	com.UserID, _ = strconv.Atoi(userID)
 	com.EmotionID, _ = strconv.Atoi(emotionID)
@@ -44,7 +38,7 @@ func Register(c echo.Context) error {
 	com.Latitude = a
 	com.Longtitude = b
 	com.Prefecture = prefecture
-	com.DateTime = t
+	com.DateTime = time.Now()
 
 	//DB処理
 	hasSuccess := comment.Create(com)
