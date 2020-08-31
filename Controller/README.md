@@ -145,7 +145,7 @@ newName: string
     comment: string,   
     latitude: double,      
     longtitude: double,      
-    prefectutre: string,      
+    prefecture: string,      
     dateTime: dateTime, 
   }
 ]
