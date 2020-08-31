@@ -77,7 +77,7 @@ comment_id: int
     "CommentContent": {
         "Comment": "",
         "EmotionID": 0,
-        "UserName": "",
+        "UserName": "",//これでエラー判別
         "DateTime": "0001-01-01T00:00:00Z"
     },
     "Response": []
