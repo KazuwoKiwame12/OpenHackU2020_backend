@@ -1,4 +1,4 @@
-package prefecturecontroller
+package prefecturelistcontroller
 
 import (
 	"net/http"

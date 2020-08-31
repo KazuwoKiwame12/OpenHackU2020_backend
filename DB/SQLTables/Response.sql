@@ -9,6 +9,6 @@ CREATE table responses (
         on delete cascade
         on update no action,
     foreign key (comment_id) references comments(id)
-        on delete no action
+        on delete cascade
         on update no action
 );

@@ -43,15 +43,17 @@ func Get(id int) *Comment {
 }
 
 //Delete ...Commentsモデルの削除
-func Delete(id int) *Comment {
+func Delete(id int) bool {
 	db := db.Connect()
 	defer db.Close()
 
 	comment := Comment{}
 	comment.ID = id
-	db.Delete(&comment)
-
-	return &comment
+	result := db.Delete(&comment)
+	if result.Error != nil {
+		return false
+	}
+	return true
 }
 
 //GetByIDAndPrefecture ...指定した県に存在する指定してIDのコメントを返す
