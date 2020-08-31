@@ -85,7 +85,7 @@ comment_id: int
 ```
 ### ユーザ情報登録
 **ユーザ情報登録(名前が重複しないようにする)**  
-- APIのURL: `/user/resister`
+- APIのURL: `/user/register`
 - Method: POST
 - フロントエンドから受け取るデータ    
 ```
