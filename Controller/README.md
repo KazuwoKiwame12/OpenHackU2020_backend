@@ -146,7 +146,6 @@ newName: string
     latitude: double,      
     longtitude: double,      
     prefecture: string,      
-    dateTime: dateTime, 
   }
 ]
 ```
@@ -167,7 +166,6 @@ newName: string
     user_id: int,
     comment_id: int,   
     comment: string,        
-    dateTime: dateTime, 
   }
 ]
 ```
