@@ -25,6 +25,7 @@ func main() {
 	//感情関連のデータ取得API
 	e.GET("/emotion/prefectures", prefecturelistcontroller.PrefectureInfoList)
 	e.GET("/emotion/:prefecture/comments", commentlistcontroller.CommentListInPrefecture)
+	e.GET("/emotion/mycomments/:user_id/:page_num/:page_size", commentlistcontroller.MyCommentList)
 	e.GET("/emotion/:prefecture/comments/:comment_id", responselistcontroller.ResponseListInComment)
 
 	//コメント登録と削除API
