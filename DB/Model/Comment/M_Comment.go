@@ -5,6 +5,7 @@ import (
 
 	db "github.com/KazuwoKiwame12/open-hack-u-2020-backend/DB"
 	dateservice "github.com/KazuwoKiwame12/open-hack-u-2020-backend/Service/DateService"
+	"github.com/jinzhu/gorm"
 )
 
 //Comment ...table: Commentsのモデル
@@ -56,7 +57,7 @@ func Delete(id int) bool {
 	return true
 }
 
-//GetByIDAndPrefecture ...指定した県に存在する指定してIDのコメントを返す
+//GetByIDAndPrefecture ...指定した県に存在する指定したIDのコメントを返す
 func GetByIDAndPrefecture(prefecture string, commentID int) Comment {
 	db := db.Connect()
 	defer db.Close()
@@ -82,4 +83,34 @@ func GetListByPrefecture(prefecture string) []Comment {
 	comments := []Comment{}
 	db.Where("prefecture = ? AND date_time >= ? AND date_time < ?", prefecture, from, to).Find(&comments)
 	return comments
+}
+
+//GetListByUserWithPaginate ...指定したユーザのコメント一覧(ぺジネーションで)
+func GetListByUserWithPaginate(userID int, pageNum int, pageSize int) []Comment {
+	db := db.Connect()
+	defer db.Close()
+
+	comments := []Comment{}
+	db.Scopes(paginate(pageNum, pageSize)).Where("user_id = ?", userID).Find(&comments)
+	return comments
+}
+
+func paginate(num int, size int) func(db *gorm.DB) *gorm.DB {
+	return func(db *gorm.DB) *gorm.DB {
+		page := num
+		if page == 0 {
+			page = 1
+		}
+
+		pageSize := size
+		switch {
+		case pageSize > 100:
+			pageSize = 100
+		case pageSize <= 0:
+			pageSize = 10
+		}
+
+		offset := (page - 1) * pageSize
+		return db.Offset(offset).Limit(pageSize)
+	}
 }
