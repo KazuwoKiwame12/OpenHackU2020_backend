@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	port := os.Getenv("PORT")
+	port := os.Getenv("8080")
 
 	e := echo.New()
 	e.Use(middleware.CORS())
@@ -26,7 +26,7 @@ func main() {
 	e.GET("/emotion/prefectures", prefecturelistcontroller.PrefectureInfoList)
 	e.GET("/emotion/:prefecture/comments", commentlistcontroller.CommentListInPrefecture)
 	e.GET("/emotion/mycomments/:user_id/:page_num/:page_size", commentlistcontroller.MyCommentList)
-	e.GET("/emotion/:prefecture/comments/:comment_id", responselistcontroller.ResponseListInComment)
+	e.GET("/emotion/comments/:comment_id", responselistcontroller.ResponseListInComment)
 
 	//コメント登録と削除API
 	e.POST("/comment/register", commentcontroller.Register)

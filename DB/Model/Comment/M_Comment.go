@@ -57,8 +57,8 @@ func Delete(id int) bool {
 	return true
 }
 
-//GetByIDAndPrefecture ...指定した県に存在する指定したIDのコメントを返す
-func GetByIDAndPrefecture(prefecture string, commentID int) Comment {
+//GetListByID ...指定したIDのコメントを返す
+func GetListByID(commentID int) Comment {
 	db := db.Connect()
 	defer db.Close()
 
@@ -67,7 +67,7 @@ func GetByIDAndPrefecture(prefecture string, commentID int) Comment {
 	to := dateservice.StartOfNextDay(now)
 
 	comment := Comment{}
-	db.Where("prefecture = ? AND id = ? AND date_time >= ? AND date_time < ?", prefecture, commentID, from, to).First(&comment)
+	db.Where("id = ? AND date_time >= ? AND date_time < ?", commentID, from, to).First(&comment)
 	return comment
 }
 
