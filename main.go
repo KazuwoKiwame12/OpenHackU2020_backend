@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	port := os.Getenv("8080")
+	port := os.Getenv("PORT")
 
 	e := echo.New()
 	e.Use(middleware.CORS())
