@@ -34,6 +34,13 @@ func AVGColor(emotionIDList []int) string {
 	mixColor := color.NRGBA{R: 255, G: 255, B: 255, A: 160}
 	emotionList := getEmotionList()
 
+	if len(emotionIDList) != 0 {
+		mixColor = color.NRGBA{R: emotionList[0].Color.R,
+			G: emotionList[0].Color.G,
+			B: emotionList[0].Color.B,
+			A: 160}
+	}
+
 	for _, emotionID := range emotionIDList {
 		newR := (emotionList[emotionID].Color.R + mixColor.R) / 2
 		newG := (emotionList[emotionID].Color.G + mixColor.G) / 2

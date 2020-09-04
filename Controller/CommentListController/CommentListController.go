@@ -11,7 +11,10 @@ import (
 
 //CommentListInPrefecture ...県に存在するコメント一覧取得
 func CommentListInPrefecture(c echo.Context) error {
-	commentList := comment.GetListByPrefecture(c.Param("prefecture"))
+	pageNum, _ := strconv.Atoi(c.Param("page_num"))
+	pageSize, _ := strconv.Atoi(c.Param("page_size"))
+
+	commentList := comment.GetListByPrefectureWithPaginate(c.Param("prefecture"), pageNum, pageSize)
 	commentListForClient := commentservice.ConvertCtoCFC(commentList)
 
 	return c.JSON(http.StatusOK, commentListForClient)

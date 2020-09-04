@@ -48,7 +48,7 @@ func ConvertCtoCFC(commentList []comment.Comment) []CommentForClient {
 
 //MakeCommentContent ...CommentをCommentContentに整形する
 func MakeCommentContent(id int) CommentContent {
-	comment := comment.GetListByID(id)
+	comment := comment.GetByTimeAndID(id)
 	user := user.Get(comment.UserID)
 
 	commentContent := CommentContent{}
