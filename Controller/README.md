@@ -44,7 +44,7 @@ prefecture: string
 []
 ```
 **ピンを押して、コメント内容確認(紐ついた返信も)**
-- APIのURL: `/emotion/{prefecture}/comments/{comment_id}` 
+- APIのURL: `/emotion/comments/{comment_id}` 
 - Method: GET   
 - フロントエンドから受け取るデータ  
 ```
@@ -82,6 +82,33 @@ comment_id: int
     },
     "Response": []
 }
+```
+**自分のコメント取得(paginate)**
+- APIのURL: `/emotion/mycomments/:user_id/:page_num/:page_size`
+- Method: GET
+- フロントエンドから受け取るデータ
+```
+user_id: string  
+page_num: string
+page_size: string
+```
+- フロントエンドへと渡すデータ
+```
+//成功
+[
+    {
+      ID: int,
+      EmotionID: int,
+      Latitude: double,
+      Longtitude: double,
+      UserName: string,
+      DateTime: dateTime,
+    },
+    .....
+]
+
+//失敗...prefectureの部分が英語大文字の県名になっていない
+[]
 ```
 ### ユーザ情報登録
 **ユーザ情報登録(名前が重複しないようにする)**  
