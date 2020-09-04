@@ -35,9 +35,11 @@ func AVGColor(emotionIDList []int) string {
 	emotionList := getEmotionList()
 
 	if len(emotionIDList) != 0 {
-		mixColor = color.NRGBA{R: emotionList[0].Color.R,
-			G: emotionList[0].Color.G,
-			B: emotionList[0].Color.B,
+		firstEmotion := emotionIDList[0]
+		mixColor = color.NRGBA{
+			R: emotionList[firstEmotion].Color.R,
+			G: emotionList[firstEmotion].Color.G,
+			B: emotionList[firstEmotion].Color.B,
 			A: 160}
 	}
 
@@ -53,10 +55,10 @@ func AVGColor(emotionIDList []int) string {
 
 func getEmotionList() [12]Emotion {
 	colorList := [4]color.NRGBA{}
-	colorList[0] = color.NRGBA{R: 255, G: 102, B: 255, A: 160} //喜
-	colorList[1] = color.NRGBA{R: 255, G: 51, B: 51, A: 160}   //怒
-	colorList[2] = color.NRGBA{R: 153, G: 153, B: 255, A: 160} //哀
-	colorList[3] = color.NRGBA{R: 204, G: 204, B: 51, A: 160}  //楽
+	colorList[0] = color.NRGBA{R: 255, G: 102, B: 255, A: 160} //喜 0 1 2
+	colorList[1] = color.NRGBA{R: 255, G: 51, B: 51, A: 160}   //怒 3 4 5
+	colorList[2] = color.NRGBA{R: 153, G: 153, B: 255, A: 160} //哀 6 7 8
+	colorList[3] = color.NRGBA{R: 204, G: 204, B: 51, A: 160}  //楽 9 10 11
 
 	emotionList := [12]Emotion{}
 	for i := 0; i < 4; i++ {
