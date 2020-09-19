@@ -1,6 +1,5 @@
 # open-hack-u-2020-backend
 ## 本番環境
-heroku: https://open-hack-u-2020-backend.herokuapp.com/  
 frontend: https://wizardly-hopper-187ec7.netlify.app/home
 ## 資料
 Gorm: http://gorm.io/ja_JP/docs/  
