@@ -32,7 +32,8 @@ func Register(c echo.Context) error {
 	res.UserID = request.UserID
 	res.CommentID = request.CommentID
 	res.Comment = request.Comment
-	res.DateTime = time.Now()
+	jst, _ := time.LoadLocation("Asia/Tokyo")
+	res.DateTime = time.Now().In(jst)
 
 	//DB処理
 	hasSuccess := response.Create(res)

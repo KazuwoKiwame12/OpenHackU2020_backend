@@ -37,7 +37,8 @@ func Register(c echo.Context) error {
 	com.Latitude = request.Latitude
 	com.Longtitude = request.Longtitude
 	com.Prefecture = request.Prefecture
-	com.DateTime = time.Now()
+	jst, _ := time.LoadLocation("Asia/Tokyo")
+	com.DateTime = time.Now().In(jst)
 
 	//DB処理
 	hasSuccess := comment.Create(com)
