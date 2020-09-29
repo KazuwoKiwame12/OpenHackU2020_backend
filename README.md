@@ -1,6 +1,6 @@
 # open-hack-u-2020-backend
 ## 本番環境
-frontend: https://wizardly-hopper-187ec7.netlify.app/home
+frontend: https://emore.netlify.app/
 ## 資料
 Gorm: http://gorm.io/ja_JP/docs/  
 echo:https://echo.labstack.com/guide  
